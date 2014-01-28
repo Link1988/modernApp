@@ -16,7 +16,9 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-
+/*
+ * Con Route group creamos todo un grupo de rutas
+ */
 Route::group(array('prefix' => 'admin'), function(){
     Route::resource('user', 'UserController');
 });
