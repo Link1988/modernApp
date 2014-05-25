@@ -1,0 +1,14 @@
+<div class="hero-unit">
+    <div>
+        <ul>
+            <li data-ng-repeat="user in users">
+                <ul>
+                    <li>Username: {{user.username}}</li>
+                    <li>Email: {{user.email}}</li>
+                    <li>Acciones: <a href="#/user/{{user.id}}">Editar</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+

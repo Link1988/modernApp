@@ -1,10 +1,16 @@
 'use strict';
 
-angular.module('publicApp')
+/**
+ * Aqui retorna el objeto mainApp
+ */
+
+angular.module('mainApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    $scope.greeting = "Hola desde Angular";
   });

@@ -22,3 +22,7 @@ Route::get('/', function()
 Route::group(array('prefix' => 'admin'), function(){
     Route::resource('user', 'UserController');
 });
+
+Route::get('/admin', function(){
+   return View::make('admin.home');
+});
