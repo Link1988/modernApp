@@ -1,35 +1,29 @@
-'use strict';
+'use-strict';
 
-describe('Controller: UsersCtrl', function () {
-
-    // Se carga la app
+describe('Controller: Users',function(){
     beforeEach(module('mainApp'));
 
-    // Declaracion de variables
+    var UsersController,
+    controller,
+    httpBackend,
+    scope;
 
-    var UsersCtrl,
-        scope,
-        httpBackend;
-
-    // Inyeccion de dependecias en los controladores
-
-    // Dentro de clousure en inject se le mandan los servicios
-    //
-    beforeEach(inject(function($controller, $rootScope, $httpBackend){
-        // Crea una nuevo scope
+    beforeEach(inject(function($controller,$rootScope,$httpBackend){
         scope = $rootScope.$new();
         httpBackend = $httpBackend;
-        UsersCtrl = $controller('UsersCtrl', {
-            $scope: scope
-        });
+        controller = $controller;
     }));
 
-    it('should fetch a list of users',function() {
-        httpBackend.expectGET('/admin/user').respond();
-
-        httpBackend.flush();
+    afterEach(function() {
+        httpBackend.verifyNoOutstandingExpectation();
+        httpBackend.verifyNoOutstandingRequest();
     });
 
-
-
+    it('should fetch a list of users',function(){
+        httpBackend.expectGET('/admin/user').respond();
+        UsersController = controller('UsersController',{
+            $scope:scope
+        });
+        httpBackend.flush();
+    });
 });

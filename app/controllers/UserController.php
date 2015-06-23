@@ -19,8 +19,7 @@ class UserController extends BaseController
         //var_dump($this->user);
         $users = $this->user->all();
         return Response::json(
-            $users->toArray(),
-            '200'
+            $users->toArray(),'200'
         );
     }
 
@@ -32,11 +31,11 @@ class UserController extends BaseController
     {
         $this->user->username = Input::get('username');
         $this->user->email = Input::get('email');
+        $this->user->setPassword(Input::get('password'));
 
-        if ($this->user->save()) {
-            // Cuando el usuario se salva el usuario va a regresar el objeto en json(serializado)
+        if ($this->user->save()) {            
             return Response::json(
-                $this->user->toArray()
+                $this->user->toArray(), '200'
             );
         }
     }
@@ -51,8 +50,7 @@ class UserController extends BaseController
         $user = $this->user->find($id);
 
         return Response::json(
-            $user->toArray(),
-            '200'
+            $user->toArray(), '200'
         );
     }
 
@@ -70,8 +68,7 @@ class UserController extends BaseController
 
         if ($user->save()) {
             return Response::json(
-                $user->toArray(),
-                '200'
+                $user->toArray(), '200'
             );
         }
     }

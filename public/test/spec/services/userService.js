@@ -71,8 +71,12 @@ describe('Service: UserService', function(){
         user.email = mockUser.email;
 
         httpBackend.expectPOST('/admin/user').respond(mockUser);
-        user.$save();
+        var response;
+        user.$save({},function(data) {
+            response = data;
+        });
         httpBackend.flush();
+        expect(response.username).toBe(user.username);
     });
 
     it('should be able to edit a user', function(){
@@ -85,14 +89,18 @@ describe('Service: UserService', function(){
 
         httpBackend.expectPUT('/admin/user/'+ user.id, user).respond(mockUser);
 
-        user.$update();
-
-       httpBackend.flush();
+        var response;
+        user.$update({id:user.id},function(data){
+            response = data;
+        });
+        httpBackend.flush();
+        expect(response.username).toBe(user.username);
 
     });
 
     it('should be able to delete a user', function(){
         var user = fetchUser();
+        var message = {message:'OK'};
 
         // DELETE NO TE REGRESA UNA PROMESA
         httpBackend.expectDELETE('/admin/user/'+user.id).respond({message: 'DELETE OK'});
@@ -104,7 +112,7 @@ describe('Service: UserService', function(){
 
         httpBackend.flush();
 
-        expect(userDelete.message).toBe('DELETE OK')
+        expect(deleteUser.message).toBe(message.message);
     });
 
 });

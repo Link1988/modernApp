@@ -1,14 +1,24 @@
-<div class="hero-unit">
-    <div>
-        <ul>
-            <li data-ng-repeat="user in users">
-                <ul>
-                    <li>Username: {{user.username}}</li>
-                    <li>Email: {{user.email}}</li>
-                    <li>Acciones: <a href="#/user/{{user.id}}">Editar</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
-
+<a href="#/user/">Create a new User!!! like a boss!!!</a>
+<ul>
+  <li data-ng-repeat="user in users">
+    <ul>
+      <li>
+        ID : {{ user.id }}
+      </li>
+      <li>
+        Username : {{ user.username }}
+      </li>
+      <li>
+        Email : {{ user.email }}
+      </li>
+      <li>
+        User Since : {{ user.created_at }}
+      </li>
+      <li>
+        Actions :
+        <a href="#/user/{{ user.id }}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#/user/{{ user.id }}/delete"><span class="glyphicon glyphicon-ban-circle"></span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
